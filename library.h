@@ -4,6 +4,8 @@
 #include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdbool.h>
 
 typedef struct client{
 	int id;

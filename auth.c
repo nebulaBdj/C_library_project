@@ -36,5 +36,25 @@ ClientNode get_client_info(){
 }
 
 int sign_in(){
+	bool isPwdValid = false;
+	while(!isPwdValid){
+		system("clear");
+		print_menu_name("로그인");
+		char inputId[9], inputPwd[50];
+		get_string("학번: ",inputId);
+		if(strcmp(inputId, "admin") == 0){
+			return 1;
+		}
+		get_string("비밀번호: ", inputPwd);
+			//검색 학번
+			//비밀번호 일치
+		if(0){
+			isPwdValid = true;
+		}else{
+			printf("정보가 일치하지 않습니다. 다시 입력해주세요.(ENTER 입력)");
+			char ch;
+			while((ch = getchar()) != '\n');
+		}
+	}
 	return 0;
 }
