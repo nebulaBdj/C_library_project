@@ -8,8 +8,17 @@ int main(void){
 		num = select_num();
 		switch (num){
 			case 1:
+				//회원가입 
+				sign_up();
 				break;
 			case 2:
+				int signNum = sign_in();
+				if(signNum == 1){
+			    	//관리자 메뉴 함수	
+				}else if(signNum == 0){
+					//회원 메뉴 함수
+				}
+				//만약 로그아웃하면 함수 탈출, 프로그램 종료는 exit(1);
 				break;
 			case 3:
 				break;

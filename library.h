@@ -33,6 +33,11 @@ typedef struct borrow{
 	struct borrow *next;
 }borrow;
 
+//main
 void print_main_menu();
 int select_num();
+
+//auth
+void sign_up();
+int sign_in();
 #endif
