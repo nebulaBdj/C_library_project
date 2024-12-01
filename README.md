@@ -10,7 +10,10 @@
    - `sign_up()`, `sign_in()` 함수 정의.
 3. **library.h**
    - 전체 사용하는 함수 선언.
-   - `client`, `book`, `borrow` 구조체 정의.
+   - `Client`, `Book`, `Borrow` 구조체 정의.
+4. **utils.c**
+   - 다양한 곳에서 쓰일 가능성이 있는 도구형 함수 정의
+   - `print_menu_name()`, `get_string(출력할 문자, 입력받을배열)` 함수 정의.
    
 ## 설치방법
 ```bash
