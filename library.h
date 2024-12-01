@@ -2,6 +2,8 @@
 #define _LIBRARY_H_
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 typedef struct client{
 	int id;
@@ -30,4 +32,7 @@ typedef struct borrow{
 	time_t returnDate;
 	struct borrow *next;
 }borrow;
+
+void print_main_menu();
+int select_num();
 #endif
