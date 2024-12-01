@@ -37,7 +37,6 @@ typedef struct borrow{
 typedef Borrow *BorrowNode;
 
 //main
-void print_menu_name();
 void print_main_menu();
 int select_num();
 
@@ -46,4 +45,7 @@ void sign_up();
 ClientNode get_client_info();
 int sign_in();
 
+//utils
+void print_menu_name();
+void get_string(char *, char []);
 #endif

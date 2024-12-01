@@ -31,9 +31,8 @@ int main(void){
 	return 0;
 }
 
-
 void print_main_menu(){
-	printf(">> 도서관 서비스 <<\n");
+	print_menu_name("도서관 서비스");
 	printf("1. 회원 가입\t\t2. 로그인\t\t3. 프로그램 종료\n\n");
 }
 
