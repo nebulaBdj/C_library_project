@@ -12,7 +12,7 @@ typedef struct client{
 	char *address;
 	char *phoneNumber;
 	struct client *next;
-}client;
+}Client;
 
 typedef struct book{
 	int bookId;
@@ -23,7 +23,7 @@ typedef struct book{
 	char *location;
 	char isAailable;
 	struct book *next;
-}book;
+}Book;
 
 typedef struct borrow{
 	int id;
@@ -31,7 +31,7 @@ typedef struct borrow{
 	time_t borrowDate;
 	time_t returnDate;
 	struct borrow *next;
-}borrow;
+}Borrow;
 
 //main
 void print_main_menu();
