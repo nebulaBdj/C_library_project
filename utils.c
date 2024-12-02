@@ -6,6 +6,6 @@ void print_menu_name(char *str){
 
 void get_string(char *text, char arr[]){
 	printf("%s", text);
-	scanf("%s", arr);
+	scanf("%[^\n]", arr);
 	getchar();
 }
