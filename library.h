@@ -47,6 +47,7 @@ int select_num();
 //auth
 void sign_up();
 ClientNode get_client_info();
+int save_client_info(ClientNode);
 int sign_in();
 
 //client

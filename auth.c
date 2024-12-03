@@ -10,8 +10,11 @@ void sign_up(){
 	if(1){
 	// 불러온 정보에 끝에 붙이고
 	// 정렬해주기
-	// 파일에 저장하기
-		printf("회원가입이 되셨습니다.\n");
+		if(save_client_info(NULL) == EOF){
+			printf("저장에 실패했습니다.\n");
+		}else{
+			printf("회원가입이 되셨습니다.\n");
+		}
 	}else{
 		printf("이미 존재하는 학번입니다.\n");
 	}
@@ -33,6 +36,20 @@ ClientNode get_client_info(){
 
 	get_string("전화번호: ", newClient->address);
 	return newClient;
+}
+
+int save_client_info(ClientNode head){
+	FILE *ifp;
+	if((ifp = fopen("client.txt", "w")) == NULL){
+		return -1;
+	}
+
+	while(head != NULL){
+		fprintf(ifp, "%d | %s | %s | %s | %s\n", head -> id, head -> password, head -> name, head -> address, head -> phoneNumber);
+		head = head -> next;		
+	}
+	fclose(ifp);
+	return 0;
 }
 
 int sign_in(){
