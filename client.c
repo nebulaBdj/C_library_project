@@ -6,7 +6,7 @@ void menu_client(){
 	do{
 		print_menu_name("회원 메뉴");
 		printf("1. 도서 검색\t\t2. 내 대여 목록\n");
-		printf("3. 게인정보 수정\t4. 회원 탈퇴\n");
+		printf("3. 개인정보 수정\t4. 회원 탈퇴\n");
 		printf("5. 로그아웃\t\t6. 프로그램 종료\n\n");
 		num = select_num();
 		switch(num){
