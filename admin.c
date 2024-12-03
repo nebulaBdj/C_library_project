@@ -28,6 +28,7 @@ void menu_admin(){
 				break;
 			case 6:
 				//회원 목록
+				menu_print_clients();
 				break;
 			case 7:
 				//로그아웃
@@ -42,3 +43,35 @@ void menu_admin(){
 		system("clear");
 	}while(num != 7);
 }
+
+
+void menu_print_clients(){
+	printf("\n");
+	int num;
+	do{
+		print_menu_name("회원 목록");
+		printf("1. 이름 검색\t\t2. 학번 검색\n");
+		printf("3. 전체 검색\t\t4. 이전 메뉴\n");
+		num = select_num();
+		switch(num){
+			case 1:
+				//이름 검색 
+				break;
+			case 2:
+				//학번 검색
+				break;
+			case 3:
+				//전체 검색
+				break;
+			case 4:
+				//이전 메뉴
+				break;
+			default:
+				printf("잘못된 번호입니다. 2초후 다시 입력하세요.\n");
+				sleep(2);
+		}
+		system("clear");
+	}while(num != 4);
+}
+
+

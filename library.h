@@ -55,6 +55,7 @@ void menu_client();
 
 //admin
 void menu_admin();
+void menu_print_clients();
 
 //utils
 void print_menu_name();
