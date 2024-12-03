@@ -56,6 +56,9 @@ void menu_client();
 //admin
 void menu_admin();
 void menu_clients_list();
+void search_client_by_name(ClientNode);
+void search_client_by_id(ClientNode);
+void search_client_all(ClientNode);
 
 //utils
 void print_menu_name();
