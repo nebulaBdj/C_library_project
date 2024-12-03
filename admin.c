@@ -56,15 +56,15 @@ void menu_clients_list(){
 		switch(num){
 			case 1:
 				//이름 검색 
-				search_client_by_name(NULL);
+				search_client_by_name(NULL);//리스트
 				break;
 			case 2:
 				//학번 검색
-				search_client_by_id(NULL);
+				search_client_by_id(NULL);//리스트
 				break;
 			case 3:
 				//전체 검색
-				search_client_all(NULL);
+				search_client_all(NULL);//리스트
 				break;
 			case 4:
 				//이전 메뉴

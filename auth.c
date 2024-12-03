@@ -6,11 +6,11 @@ void sign_up(){
 	printf("학번, 비밀번호, 이름, 주소, 전화번호를 입력하세요.\n\n");
 	ClientNode newClient = get_client_info();
 	printf("\n");
-	//정보에 학번 있나 체크
-	if(1){
+
+	if(search_by_id(NULL, newClient->id) == NULL){ //리스트
 	// 불러온 정보에 끝에 붙이고
 	// 정렬해주기
-		if(save_client_info(NULL) == EOF){
+		if(save_client_info(NULL)){//리스트
 			printf("저장에 실패했습니다.\n");
 		}else{
 			printf("회원가입이 되셨습니다.\n");
@@ -54,6 +54,7 @@ int save_client_info(ClientNode head){
 
 int sign_in(){
 	bool isPwdValid = false;
+	ClientNode findNode;
 	while(!isPwdValid){
 		system("clear");
 		print_menu_name("로그인");
@@ -64,9 +65,10 @@ int sign_in(){
 		if(strcmp(inputId, "admin") == 0){
 			return 1;
 		}
-			//검색 학번
-			//비밀번호 일치
-		if(1){
+
+		findNode = search_by_id(NULL, atoi(inputId));//리스트
+
+		if((findNode != NULL) && strcmp(inputPwd, findNode->password)){
 			isPwdValid = true;
 		}else{
 			printf("정보가 일치하지 않습니다. 다시 입력해주세요.(ENTER 입력)");
@@ -75,4 +77,16 @@ int sign_in(){
 		}
 	}
 	return 0;
+}
+
+ClientNode search_by_id(ClientNode head, int id){
+	ClientNode node = NULL;
+	while(head != NULL){
+		if(id == head->id){
+			node = head;
+			break;
+		}
+		head = head->next;
+	}
+	return node;
 }

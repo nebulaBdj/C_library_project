@@ -49,6 +49,7 @@ void sign_up();
 ClientNode get_client_info();
 int save_client_info(ClientNode);
 int sign_in();
+ClientNode search_by_id(ClientNode, int);
 
 //client
 void menu_client();
