@@ -48,7 +48,7 @@ int sign_in(){
 		get_string("비밀번호: ", inputPwd);
 			//검색 학번
 			//비밀번호 일치
-		if(0){
+		if(1){
 			isPwdValid = true;
 		}else{
 			printf("정보가 일치하지 않습니다. 다시 입력해주세요.(ENTER 입력)");

@@ -13,10 +13,12 @@ int main(void){
 				break;
 			case 2:
 				int signNum = sign_in();
-				if(signNum == 1){
-			    	//관리자 메뉴 함수	
-				}else if(signNum == 0){
+				if(signNum == ADMIN){
+			    	//관리자 메뉴 함수
+
+				}else if(signNum == CLIENT){
 					//회원 메뉴 함수
+					menu_client();
 				}
 				//만약 로그아웃하면 함수 탈출, 프로그램 종료는 exit(1);
 				break;
@@ -40,5 +42,6 @@ int select_num(){
 	printf("번호를 선택하세요: ");
 	int num;
 	scanf("%d", &num);
+	getchar();
 	return num;
 }

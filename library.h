@@ -7,6 +7,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define CLIENT 0
+#define ADMIN 1
 typedef struct client{
 	int id;
 	char password[50];
@@ -46,6 +48,9 @@ int select_num();
 void sign_up();
 ClientNode get_client_info();
 int sign_in();
+
+//client
+void menu_client();
 
 //utils
 void print_menu_name();
