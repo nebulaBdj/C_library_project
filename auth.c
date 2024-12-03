@@ -59,10 +59,11 @@ int sign_in(){
 		print_menu_name("로그인");
 		char inputId[9], inputPwd[50];
 		get_string("학번: ",inputId);
+
+		get_string("비밀번호: ", inputPwd);
 		if(strcmp(inputId, "admin") == 0){
 			return 1;
 		}
-		get_string("비밀번호: ", inputPwd);
 			//검색 학번
 			//비밀번호 일치
 		if(1){

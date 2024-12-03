@@ -15,7 +15,7 @@ int main(void){
 				int signNum = sign_in();
 				if(signNum == ADMIN){
 			    	//관리자 메뉴 함수
-
+					menu_admin();
 				}else if(signNum == CLIENT){
 					//회원 메뉴 함수
 					menu_client();

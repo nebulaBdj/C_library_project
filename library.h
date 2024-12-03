@@ -53,6 +53,9 @@ int sign_in();
 //client
 void menu_client();
 
+//admin
+void menu_admin();
+
 //utils
 void print_menu_name();
 void get_string(char *, char []);
