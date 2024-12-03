@@ -28,7 +28,7 @@ void menu_admin(){
 				break;
 			case 6:
 				//회원 목록
-				menu_print_clients();
+				menu_clients_list();
 				break;
 			case 7:
 				//로그아웃
@@ -45,7 +45,7 @@ void menu_admin(){
 }
 
 
-void menu_print_clients(){
+void menu_clients_list(){
 	printf("\n");
 	int num;
 	do{
