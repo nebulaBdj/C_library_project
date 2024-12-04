@@ -26,7 +26,7 @@ typedef struct book{
 	char author[10];
 	long ISBN;
 	char location[100];
-	char isAailable;
+	char isAvailable;
 	struct book *next;
 }Book;
 typedef Book *BookNode;
@@ -43,6 +43,10 @@ typedef Borrow *BorrowNode;
 //main
 void print_main_menu();
 int select_num();
+//메모리 로드 함수
+ClientNode load_client(char* );
+BookNode load_book(char* );
+BorrowNode load_borrow(char* );
 
 //auth
 void sign_up();
@@ -64,4 +68,5 @@ void search_client_all(ClientNode);
 //utils
 void print_menu_name();
 void get_string(char *, char []);
+
 #endif

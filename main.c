@@ -1,6 +1,13 @@
 #include "library.h"
+ClientNode headClient; 
+BookNode headBook;
+BorrowNode headBorrow;
 
 int main(void){
+	headClient=load_client("client.txt");
+	headBook=load_book("book.txt");
+	headBorrow=load_borrow("borrow.txt");
+
 	int num;
 	while(num != 3){ //조건 고민중.. 아예 이부분도 함수화해야하나?
 		system("clear");
@@ -45,3 +52,100 @@ int select_num(){
 	getchar();
 	return num;
 }
+
+
+//client파일 로드
+ClientNode load_client(char* filename){
+	FILE* fp=fopen(filename,"r");
+	if(fp==NULL){
+		printf("client 파일을 열 수 없습니다.\n");
+		return NULL;
+	}
+	ClientNode head=NULL;
+	ClientNode current=NULL;
+	Client tmp;
+	while(fscanf(fp,"%d | %[^|] | %[^|] | %[^|] | %s\n",&tmp.id,tmp.password,tmp.name,tmp.address, tmp.phoneNumber)!=EOF){
+
+		ClientNode tmpp = malloc(sizeof(Client));
+       		*tmpp = tmp;
+        	tmpp->next = NULL;
+
+        	if (head==NULL) {
+               		head = tmpp;
+            		current = tmpp;
+		}
+		else {
+            		current->next = tmpp;
+            		current = tmpp;
+		}
+	}
+
+	fclose(fp);
+    	return head;
+}
+
+
+
+//book파일 로드
+BookNode load_book(char* filename){
+	FILE* fp=fopen(filename,"r");
+	if(fp==NULL){
+		printf("book 파일을 열 수 없습니다.\n");
+		return NULL;
+	}
+	BookNode head=NULL;
+	BookNode current=NULL;
+	Book tmp;
+	while(fscanf(fp,"%d | %[^|] | %[^|] | %[^|] | %ld | %[^|] | %c\n",&tmp.bookId,tmp.name,tmp.publisher,tmp.author, &tmp.ISBN, tmp.location, &tmp.isAvailable)!=EOF){
+
+		BookNode tmpp = malloc(sizeof(Book));
+       		*tmpp = tmp;
+        	tmpp->next = NULL;
+
+        	if (head==NULL) {
+               		head = tmpp;
+            		current = tmpp;
+		}
+		else {
+            		current->next = tmpp;
+            		current = tmpp;
+		}
+	}
+
+	fclose(fp);
+    	return head;
+}
+
+
+
+//borrow파일 로드
+BorrowNode load_borrow(char* filename){
+	FILE* fp=fopen(filename,"r");
+	if(fp==NULL){
+		printf("borrow 파일을 열 수 없습니다.\n");
+		return NULL;
+	}
+	BorrowNode head=NULL;
+	BorrowNode current=NULL;
+	Borrow tmp;
+	while(fscanf(fp,"%d | %d | %ld | %ld\n",&tmp.id,&tmp.bookId,&tmp.borrowDate, &tmp.returnDate)!=EOF){
+
+		BorrowNode tmpp = malloc(sizeof(Borrow));
+       		*tmpp = tmp;
+        	tmpp->next = NULL;
+
+        	if (head==NULL) {
+               		head = tmpp;
+            		current = tmpp;
+		}
+		else {
+            		current->next = tmpp;
+            		current = tmpp;
+		}
+	}
+
+	fclose(fp);
+    	return head;
+}
+
+
