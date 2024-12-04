@@ -1,5 +1,5 @@
 CC = gcc
-OBJS = main.o auth.o utils.o
+OBJS = main.o auth.o client.o admin.o utils.o
 
 library: $(OBJS)
 	@echo "linking..."
