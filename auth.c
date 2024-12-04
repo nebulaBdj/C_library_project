@@ -67,10 +67,8 @@ int sign_in(){
 		if(strcmp(inputId, "admin") == 0){
 			return 1;
 		}
-
 		findNode = search_by_id(headClient, atoi(inputId));
-
-		if((findNode != NULL) && strcmp(inputPwd, findNode->password)){
+		if((findNode != NULL) && !strcmp(inputPwd, findNode->password)){
 			isPwdValid = true;
 		}else{
 			printf("정보가 일치하지 않습니다. 다시 입력해주세요.(ENTER 입력)");
