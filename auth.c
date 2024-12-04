@@ -1,4 +1,5 @@
 #include "library.h"
+extern ClientNode headClient;
 
 void sign_up(){
 	printf("\n");
@@ -7,10 +8,11 @@ void sign_up(){
 	ClientNode newClient = get_client_info();
 	printf("\n");
 
-	if(search_by_id(NULL, newClient->id) == NULL){ //리스트
-	// 불러온 정보에 끝에 붙이고
-	// 정렬해주기
-		if(save_client_info(NULL)){//리스트
+	if(search_by_id(headClient, newClient->id) == NULL){
+		newClient->next = headClient;
+		headClient = newClient;
+		sort_client(headClient);
+		if(save_client_info(headClient)){
 			printf("저장에 실패했습니다.\n");
 		}else{
 			printf("회원가입이 되셨습니다.\n");
@@ -34,7 +36,7 @@ ClientNode get_client_info(){
 
 	get_string("주소: ", newClient->address);
 
-	get_string("전화번호: ", newClient->address);
+	get_string("전화번호: ", newClient->phoneNumber);
 	return newClient;
 }
 
@@ -45,7 +47,7 @@ int save_client_info(ClientNode head){
 	}
 
 	while(head != NULL){
-		fprintf(ifp, "%d | %s | %s | %s | %s\n", head -> id, head -> password, head -> name, head -> address, head -> phoneNumber);
+		fprintf(ifp, "%d | %s | %s | %s | %s\n", head -> id, head -> password, head -> name, head->address, head->phoneNumber);
 		head = head -> next;		
 	}
 	fclose(ifp);
@@ -66,7 +68,7 @@ int sign_in(){
 			return 1;
 		}
 
-		findNode = search_by_id(NULL, atoi(inputId));//리스트
+		findNode = search_by_id(headClient, atoi(inputId));
 
 		if((findNode != NULL) && strcmp(inputPwd, findNode->password)){
 			isPwdValid = true;

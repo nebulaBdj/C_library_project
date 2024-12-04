@@ -9,3 +9,39 @@ void get_string(char *text, char arr[]){
 	scanf("%[^\n]", arr);
 	getchar();
 }
+
+void sort_client(ClientNode head){
+	ClientNode p, q;
+	int checkSwap;
+    do{
+	    checkSwap = 0;
+	    p = head;
+	    q = head->next;
+	    while(q != NULL){
+		    if(p->id > q->id){
+			    char temp[200];
+				int tmp = p->id;
+				p->id = q->id;
+				q->id = tmp;
+			    strcpy(temp, p->password);
+			    strcpy(p->password, q->password);
+			    strcpy(q->password, temp);
+
+			    strcpy(temp, p->name);
+			    strcpy(p->name, q->name);
+			    strcpy(q->name, temp);
+
+			    strcpy(temp, p->address);
+			    strcpy(p->address, q->address);
+			    strcpy(q->address, temp);
+				
+			    strcpy(temp, p->phoneNumber);
+			    strcpy(p->phoneNumber, q->phoneNumber);
+			    strcpy(q->phoneNumber, temp);
+			    checkSwap = 1;
+			}
+			p = q;
+			q = q->next;
+	   }
+	}while(checkSwap);
+}

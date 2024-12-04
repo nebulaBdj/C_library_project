@@ -12,7 +12,7 @@
 typedef struct client{
 	int id;
 	char password[50];
-	char name[10];
+	char name[30];
 	char address[200];
 	char phoneNumber[12];
 	struct client *next;
@@ -68,5 +68,6 @@ void search_client_all(ClientNode);
 //utils
 void print_menu_name();
 void get_string(char *, char []);
+void sort_client(ClientNode);
 
 #endif
