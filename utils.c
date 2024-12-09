@@ -66,3 +66,13 @@ ClientNode insert_client(ClientNode head, ClientNode new){
 	p->next = new;
 	return head;
 }
+
+void print_client(ClientNode head){
+	while(head!=NULL){
+		fprintf(stdout, "%d|%s|%s|%s|%s|\n", head -> id, head -> password, head -> name, head->address, head->phoneNumber);
+		head = head->next;
+	}
+}
+
+
+
