@@ -9,7 +9,7 @@ int main(void){
 	headBorrow=load_borrow("borrow.txt");
 
 	int num;
-	while(num != 3){ //조건 고민중.. 아예 이부분도 함수화해야하나?
+	while(num != 3){
 		system("clear");
 		print_main_menu();
 		num = select_num();
