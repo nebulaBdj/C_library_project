@@ -9,9 +9,10 @@ void sign_up(){
 	printf("\n");
 
 	if(search_by_id(headClient, newClient->id) == NULL){
-		newClient->next = headClient;
+		headClient = insert_client(headClient, newClient);
+	/*	newClient->next = headClient;
 		headClient = newClient;
-		sort_client(headClient);
+		sort_client(headClient);*/
 		if(save_client_info(headClient)){
 			printf("저장에 실패했습니다.\n");
 		}else{
@@ -48,6 +49,7 @@ int save_client_info(ClientNode head){
 
 	while(head != NULL){
 		fprintf(ifp, "%d | %s | %s | %s | %s\n", head -> id, head -> password, head -> name, head->address, head->phoneNumber);
+		fprintf(stdout, "%d|%s|%s|%s|%s|\n", head -> id, head -> password, head -> name, head->address, head->phoneNumber);
 		head = head -> next;		
 	}
 	fclose(ifp);

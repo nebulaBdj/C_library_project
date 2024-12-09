@@ -45,3 +45,24 @@ void sort_client(ClientNode head){
 	   }
 	}while(checkSwap);
 }
+
+ClientNode insert_client(ClientNode head, ClientNode new){
+	if(head == NULL || new->id < head->id){
+		new->next = head;
+		return new;
+	}
+	ClientNode p, q;
+	p = head;
+	q = head->next;
+	while(q != NULL){
+		if((p->id < new->id) && (q->id > new->id)){
+			new->next = q;
+			p->next = new;
+			return head;
+		}
+		p = q;
+		q = q->next;
+	}
+	p->next = new;
+	return head;
+}

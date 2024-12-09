@@ -69,5 +69,6 @@ void search_client_all(ClientNode);
 void print_menu_name();
 void get_string(char *, char []);
 void sort_client(ClientNode);
+ClientNode insert_client(ClientNode, ClientNode);
 
 #endif
