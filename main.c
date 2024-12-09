@@ -19,13 +19,13 @@ int main(void){
 				sign_up();
 				break;
 			case 2:
-				int signNum = sign_in();
-				if(signNum == ADMIN){
+				ClientNode signNode = sign_in();
+				if(signNode == NULL){
 			    	//관리자 메뉴 함수
 					menu_admin();
-				}else if(signNum == CLIENT){
+				}else{
 					//회원 메뉴 함수
-					menu_client();
+					menu_client(signNode);
 				}
 				//만약 로그아웃하면 함수 탈출, 프로그램 종료는 exit(1);
 				break;

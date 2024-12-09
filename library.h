@@ -52,7 +52,7 @@ BorrowNode load_borrow(char* );
 void sign_up();
 ClientNode get_client_info();
 int save_client_info(ClientNode);
-int sign_in();
+ClientNode sign_in();
 ClientNode search_by_id(ClientNode, int);
 
 //client

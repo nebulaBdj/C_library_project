@@ -55,9 +55,9 @@ int save_client_info(ClientNode head){
 	return 0;
 }
 
-int sign_in(){
+ClientNode sign_in(){
 	bool isPwdValid = false;
-	ClientNode findNode;
+	ClientNode findNode = NULL;
 	while(!isPwdValid){
 		system("clear");
 		print_menu_name("로그인");
@@ -66,7 +66,7 @@ int sign_in(){
 
 		get_string("비밀번호: ", inputPwd);
 		if(strcmp(inputId, "admin") == 0){
-			return 1;
+			return NULL;
 		}
 		findNode = search_by_id(headClient, atoi(inputId));
 		if((findNode != NULL) && !strcmp(inputPwd, findNode->password)){
@@ -77,7 +77,7 @@ int sign_in(){
 			while((ch = getchar()) != '\n');
 		}
 	}
-	return 0;
+	return findNode;
 }
 
 ClientNode search_by_id(ClientNode head, int id){
