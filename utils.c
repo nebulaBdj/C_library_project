@@ -67,12 +67,16 @@ ClientNode insert_client(ClientNode head, ClientNode new){
 	return head;
 }
 
-void print_client(ClientNode head){
+void debug_print_client(ClientNode head){
 	while(head!=NULL){
 		fprintf(stdout, "%d|%s|%s|%s|%s|\n", head -> id, head -> password, head -> name, head->address, head->phoneNumber);
 		head = head->next;
 	}
 }
 
-
+void wait_enter(){
+	printf("\n엔터를 누르면 이전화면으로 돌아갑니다.");
+	char ch;
+	while((ch = getchar()) != '\n');
+}
 

@@ -1,4 +1,7 @@
 #include "library.h"
+extern ClientNode headClient;
+
+void print_client(ClientNode);
 
 void menu_admin(){
 	printf("\n");
@@ -56,15 +59,15 @@ void menu_clients_list(){
 		switch(num){
 			case 1:
 				//이름 검색 
-				search_client_by_name(NULL);//리스트
+				search_client_by_name(headClient);
 				break;
 			case 2:
 				//학번 검색
-				search_client_by_id(NULL);//리스트
+				search_client_by_id(headClient);
 				break;
 			case 3:
 				//전체 검색
-				search_client_all(NULL);//리스트
+				search_client_all(headClient);
 				break;
 			case 4:
 				//이전 메뉴
@@ -78,14 +81,19 @@ void menu_clients_list(){
 }
 
 void search_client_by_name(ClientNode head){
-	char name[10];
+	char name[50];
 	get_string("이름 : ", name);
+	bool isExist = false;
 	while(head != NULL){
 		if(strcmp(name, head->name) == 0){
-			printf("%d %s %s %s\n", head->id, head->name, head->address, head->phoneNumber);
+			print_client(head);
+			isExist = true;
 		}
 		head = head->next;
 	}
+	if(isExist == false)
+		printf("%s은(는) 존재하지 않는 유저입니다.\n", name);
+	wait_enter();
 }
 
 void search_client_by_id(ClientNode head){
@@ -93,18 +101,28 @@ void search_client_by_id(ClientNode head){
 	printf("학번 : ");
 	scanf("%d", &id);
 	getchar();
+	bool isExist = false;
 	while(head != NULL){
-		if(id, head->id){
-			printf("%d %s %s %s\n", head->id, head->name, head->address, head->phoneNumber);
+		if(id == head->id){
+			print_client(head);
+			isExist = true;
 			break;
 		}
 		head = head->next;
 	}
+	if(isExist == false)
+		printf("%d은(는) 존재하지 않는 유저입니다.\n", id);
+	wait_enter();
 }
 
 void search_client_all(ClientNode head){
 	while(head != NULL){
-		printf("%d %s %s %s\n", head->id, head->name, head->address, head->phoneNumber);
+		print_client(head);
 		head = head->next;
 	}
+	wait_enter();
+}
+
+void print_client(ClientNode node){
+	printf("%d | %s | %s | %s\n", node->id, node->name, node->address, node->phoneNumber);
 }

@@ -70,6 +70,6 @@ void print_menu_name();
 void get_string(char *, char []);
 void sort_client(ClientNode);
 ClientNode insert_client(ClientNode, ClientNode);
-void print_client(ClientNode);
-
+void debug_pring_client(ClientNode);
+void wait_enter();
 #endif
