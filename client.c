@@ -1,7 +1,11 @@
 #include "library.h"
 extern ClientNode headClient;
+extern BorrowNode headBorrow;
 
 void update_info(ClientNode);
+void updateClient(ClientNode, char*);
+int isBorrow(BorrowNode, int );
+void removeClient(ClientNode,BorrowNode ,int );
 
 void menu_client(ClientNode info){
 	printf("\n");
@@ -25,6 +29,7 @@ void menu_client(ClientNode info){
 				break;
 			case 4:
 				//회원 탈퇴 
+				removeClient(headClient, headBorrow,info->id);
 				break;
 			case 5:
 				//로그아웃
@@ -82,3 +87,71 @@ void update_info(ClientNode info){
 		system("clear");
 	}while(num != 4);
 }
+
+
+//client.txt 업데이트, 링크드리스트 받아와서 그냥 처음부터 덮어쓰기, 이거 이외에는 생각이 안떠오르네..
+void updateClient(ClientNode head, char* filename) {
+    	FILE* fp=fopen(filename,"w");
+    	if(fp==NULL){
+        	printf("client.txt 파일을 열 수 없습니다.\n");
+        	return;
+	}
+
+    	ClientNode current=head;
+    	while(current!=NULL) {
+        	fprintf(fp, "%d | %s | %s | %s | %s\n",current->id,current->password,current->name,current->address, current->phoneNumber);
+        current = current->next;
+    	}
+    	fclose(fp);
+}
+
+//대여목록 검사
+int isBorrow(BorrowNode head, int id) {
+    BorrowNode current=head;
+
+    while (current != NULL) {
+        if (current->id == id) {
+            return 1;  // 학번이 존재하면 1 반환
+        }
+        current=current->next;
+    }
+
+    return 0;  // 학번이 존재하지 않으면 0 반환
+}
+
+
+void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
+	//대여한 도서가 있는경우
+	if(isBorrow(borrowHead,id)){
+		printf("대여한 도서가 있어 회원탈퇴가 불가능합니다\n");
+		return ;
+	}
+
+
+	//대여한 도서가 없는 경우 탈퇴 진행
+	if(clientHead==NULL){
+        	return ;  // 리스트가 비어있음
+    	}
+
+    	ClientNode current=clientHead;
+    	ClientNode prev=NULL;
+
+   	 // 삭제할 회원 찾기
+    	while(current!=NULL&&current->id!=id) {
+        	prev=current;
+        	current=current->next;
+    	}
+
+    	// 첫 번째 노드를 삭제해야할 경우
+    	if (prev==NULL) {
+        	clientHead=current->next;
+    	}
+	else{
+        	prev->next=current->next;
+	}
+
+    	free(current);
+	updateClient(clientHead, "client.txt");
+    	return ;
+}
+
