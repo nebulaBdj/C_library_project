@@ -102,6 +102,7 @@ void updateClient(ClientNode head, char* filename) {
         	fprintf(fp, "%d | %s | %s | %s | %s\n",current->id,current->password,current->name,current->address, current->phoneNumber);
         current = current->next;
     	}
+	fflush(fp);
     	fclose(fp);
 }
 
@@ -123,7 +124,8 @@ int isBorrow(BorrowNode head, int id) {
 void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
 	//대여한 도서가 있는경우
 	if(isBorrow(borrowHead,id)){
-		printf("대여한 도서가 있어 회원탈퇴가 불가능합니다\n");
+		printf("대여한 도서가 있어 회원탈퇴가 불가능합니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
 		return ;
 	}
 
@@ -152,6 +154,9 @@ void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
 
     	free(current);
 	updateClient(clientHead, "client.txt");
+	printf("탈퇴가 완료되었습니다. 2초 후 돌아갑니다.\n");
+	sleep(2);
+
     	return ;
 }
 
