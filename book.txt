@@ -1,0 +1,32 @@
+1000001 | C Programing A to C  | donga  | dongj  | 1231231231231 | liver_lib  | Y
+1000002 | dodo | dodao | dododa | 7897897897891 | dadoadok | Y
+1000003 | Clean Code | Prentice Hall | Robert C. Martin | 9780132350884 | Central Library | Y
+1000004 | The Pragmatic Programmer | Addison-Wesley | Andy Hunt | 9780201616224 | North Library | Y
+1000005 | Design Patterns | Addison-Wesley | Erich Gamma | 9780201633610 | South Library | Y
+1000006 | Refactoring | Addison-Wesley | Martin Fowler | 9780134757599 | East Library | N
+1000007 | Domain-Driven Design | Addison-Wesley | Eric Evans | 9780321125217 | West Library | Y
+1000008 | Head First Design Patterns | O'Reilly | Eric Freeman | 9780596007126 | Central Library | Y
+1000009 | Effective Java | Addison-Wesley | Joshua Bloch | 9780134685991 | North Library | N
+1000010 | Code Complete | Microsoft Press | Steve McConnell | 9780735619678 | South Library | Y
+1000011 | Cracking the Coding Interview | CareerCup | Gayle Laakmann McDowell | 9780984782857 | East Library | Y
+1000012 | Artificial Intelligence: A Modern Approach | Pearson | Stuart Russell | 9780136042594 | Central Library | Y
+1000013 | Introduction to Algorithms | MIT Press | Thomas H. Cormen | 9780262033848 | West Library | N
+1000014 | Computer Networking: A Top-Down Approach | Pearson | James F. Kurose | 9780133594140 | North Library | Y
+1000015 | Database System Concepts | McGraw-Hill | Abraham Silberschatz | 9780078022159 | South Library | Y
+1000016 | Operating System Concepts | Wiley | Abraham Silberschatz | 9781119456339 | East Library | Y
+1000017 | Artificial Intelligence for Humans | CreateSpace | Jeff Heaton | 9781493682221 | Central Library | Y
+1000018 | Deep Learning | MIT Press | Ian Goodfellow | 9780262035613 | North Library | N
+1000019 | Machine Learning | McGraw-Hill | Tom M. Mitchell | 9780070428072 | West Library | Y
+1000020 | The Art of Computer Programming | Addison-Wesley | Donald Knuth | 9780201896848 | Central Library | Y
+1000021 | Computer Graphics: Principles and Practice | Addison-Wesley | John F. Hughes | 9780321399526 | South Library | Y
+1000022 | Modern Operating Systems | Pearson | Andrew S. Tanenbaum | 9780133591620 | East Library | N
+1000023 | Blockchain Basics | Apress | Daniel Drescher | 9781484226032 | West Library | Y
+1000024 | Embedded Systems Design | Springer | Peter Marwedel | 9781461414101 | Central Library | Y
+1000025 | Programming Languages: Principles and Paradigms | Springer | Allen Tucker | 9780073191462 | North Library | Y
+1000026 | Software Engineering | McGraw-Hill | Roger S. Pressman | 9780078022129 | East Library | Y
+1000027 | The Mythical Man-Month | Addison-Wesley | Frederick P. Brooks Jr. | 9780201835953 | South Library | N
+1000028 | Algorithms to Live By | Picador | Brian Christian | 9781250118364 | West Library | Y
+1000029 | Python Crash Course | No Starch Press | Eric Matthes | 9781593276034 | Central Library | Y
+1000030 | Hands-On Machine Learning | O'Reilly | Aurélien Géron | 9781492032649 | East Library | Y
+1000031 | Learning React | O'Reilly | Alex Banks | 9781492051725 | South Library | Y
+1000032 | Introduction to Computer Theory | Wiley | Daniel Cohen | 9780471137726 | North Library | Y

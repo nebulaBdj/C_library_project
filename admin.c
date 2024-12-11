@@ -38,6 +38,7 @@ void menu_admin(){
 				break;
 			case 5:
 				//도서 검색
+				search_book_menu(headBook);
 				break;
 			case 6:
 				//회원 목록

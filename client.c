@@ -1,6 +1,7 @@
 #include "library.h"
 extern ClientNode headClient;
 extern BorrowNode headBorrow;
+extern BookNode headBook;
 
 void update_info(ClientNode);
 void updateClient(ClientNode, char*);
@@ -18,7 +19,8 @@ void menu_client(ClientNode info){
 		num = select_num();
 		switch(num){
 			case 1:
-				//도서 검색 
+				//도서 검색
+				search_book_menu(headBook);
 				break;
 			case 2:
 				//내 대여 목록

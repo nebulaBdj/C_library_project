@@ -72,4 +72,10 @@ void sort_client(ClientNode);
 ClientNode insert_client(ClientNode, ClientNode);
 void debug_pring_client(ClientNode);
 void wait_enter();
+
+//search_book
+void search_book_menu(BookNode);
+void print_all_books(BookNode);
+void search_by_attribute(BookNode, const char* , int);
+
 #endif

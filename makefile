@@ -1,5 +1,5 @@
 CC = gcc
-OBJS = main.o auth.o client.o admin.o utils.o
+OBJS = main.o auth.o client.o admin.o utils.o search_book.o
 
 library: $(OBJS)
 	@echo "linking..."
@@ -19,6 +19,9 @@ admin.o: admin.c library.h
 
 utils.o: utils.c library.h
 	$(CC) -c utils.c
+
+search_book.o: search_book.c library.h
+	$(CC) -c search_book.c
 
 clean:
 	rm $(OBJS) library
