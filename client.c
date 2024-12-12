@@ -85,8 +85,14 @@ void update_info(ClientNode info){
 				printf("잘못된 번호입니다. 2초후 다시 입력하세요.\n");
 				sleep(2);
 		}
-		if(isChange)
-			save_client_info(headClient);
+		if(isChange){
+			if(save_client_info(headClient)){
+				printf("저장에 실패하였습니다. 다시 시도하세요\n");
+			}else{
+				printf("성공적으로 저장되었습니다.\n");
+			}
+			wait_enter();
+		}
 		system("clear");
 	}while(num != 4);
 }
