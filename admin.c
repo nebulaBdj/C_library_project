@@ -28,6 +28,7 @@ void menu_admin(){
 				break;
 			case 2:
 				//도서 삭제
+				delete_book();
 				break;
 			case 3:
 				//도서 대여
@@ -357,3 +358,79 @@ void update_borrow(BorrowNode borrowHead, char* filename){
         return ;
 }
 
+
+void delete_book() {
+	int searchOption;
+	char searchTerm[100];
+	BookNode prev = NULL, current = headBook; 
+	bool found = false;
+
+	printf("\n>> 도서 삭제 <<\n");
+	printf("1. 도서명 검색\t2. ISBN 검색\n");
+	printf("검색 옵션을 선택하세요: ");
+	scanf("%d", &searchOption);
+	getchar();
+
+	if (searchOption == 1) {
+		printf("도서명을 입력하세요: ");
+		scanf(" %[^\n]", searchTerm);
+	} else if (searchOption == 2) {
+		printf("ISBN을 입력하세요: ");
+		scanf(" %[^\n]", searchTerm);
+	} else {
+		printf("잘못된 입력입니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
+		return;
+	}
+
+	printf("\n>> 검색 결과 <<\n");
+	while (current != NULL) {
+		if ((searchOption == 1 && strstr(current->name, searchTerm)) ||
+				(searchOption == 2 && current->ISBN == atoll(searchTerm))) {
+			found = true;
+			printf("\n");
+			printf("도서번호: %d(삭제 가능 여부: %c)\n", current->bookId, current->isAvailable);
+			printf("도서명: %s\n출판사: %s\n저자명: %s\nISBN: %ld\n소장처: %s\n",
+					   current->name, current->publisher, current->author,
+					      current->ISBN, current->location);
+		}
+		current = current->next;
+	}
+
+	if (!found) {
+		printf("검색 결과가 없습니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
+		return;
+	}
+
+	int deleteBookId;
+	printf("\n삭제할 도서의 번호를 입력하세요: ");
+	scanf("%d", &deleteBookId);
+
+	current = headBook;
+	while (current != NULL) {
+		if (current->bookId == deleteBookId) {
+			if (current->isAvailable == 'N') {
+				printf("이 도서는 대여 중이므로 삭제할 수 없습니다. 2초 후 돌아갑니다.\n");
+				sleep(2);
+				return;
+			}
+
+			if (prev == NULL) {
+				headBook = current->next;
+			} else {
+				prev->next = current->next;
+			}
+			free(current);
+			update_book(headBook, "book.txt");
+			printf("도서가 삭제되었습니다. 2초 후 돌아갑니다.\n");
+			sleep(2);
+			return;
+		}
+		prev = current;
+		current = current->next;
+	}
+
+	printf("도서 번호를 찾을 수 없습니다. 2초 후 돌아갑니다.\n");
+	sleep(2);
+}

@@ -64,6 +64,7 @@ void menu_clients_list();
 void search_client_by_name(ClientNode);
 void search_client_by_id(ClientNode);
 void search_client_all(ClientNode);
+void delete_book();
 
 //utils
 void print_menu_name();
