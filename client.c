@@ -107,7 +107,7 @@ void updateClient(ClientNode head, char* filename) {
 
     	ClientNode current=head;
     	while(current!=NULL) {
-        	fprintf(fp, "%d | %s | %s | %s | %s\n",current->id,current->password,current->name,current->address, current->phoneNumber);
+        	fprintf(fp, "%d|%s|%s|%s|%s\n",current->id,current->password,current->name,current->address, current->phoneNumber);
         current = current->next;
     	}
 	fflush(fp);

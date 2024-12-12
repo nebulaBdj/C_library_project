@@ -238,7 +238,7 @@ void update_book(BookNode bookHead, char* filename){
 		return ;}
 	BookNode current=bookHead;
 	while(current!=NULL){
-		fprintf(fp,"%d | %s | %s | %s | %ld | %s | %c\n",current->bookId, current->name, current->publisher, current->author,current->ISBN, current->location,current->isAvailable);
+		fprintf(fp,"%d|%s|%s|%s|%ld|%s|%c\n",current->bookId, current->name, current->publisher, current->author,current->ISBN, current->location,current->isAvailable);
 		current=current->next;
 		}
 	fflush(fp);
@@ -351,7 +351,7 @@ void update_borrow(BorrowNode borrowHead, char* filename){
                 return ;}
         BorrowNode current=borrowHead;
         while(current!=NULL){
-                fprintf(fp,"%d | %d | %ld | %ld\n",current->id, current->bookId, current->borrowDate, current->returnDate);
+                fprintf(fp,"%d|%d|%ld|%ld\n",current->id, current->bookId, current->borrowDate, current->returnDate);
                 current=current->next;
                 }
 	fflush(fp);

@@ -64,7 +64,7 @@ ClientNode load_client(char* filename){
 	ClientNode head=NULL;
 	ClientNode current=NULL;
 	Client tmp;
-	while(fscanf(fp,"%d | %[^|] | %[^|] | %[^|] | %s\n",&tmp.id,tmp.password,tmp.name,tmp.address, tmp.phoneNumber)!=EOF){
+	while(fscanf(fp,"%d|%[^|]|%[^|]|%[^|]|%s\n",&tmp.id,tmp.password,tmp.name,tmp.address, tmp.phoneNumber)!=EOF){
 
 		ClientNode tmpp = malloc(sizeof(Client));
        		*tmpp = tmp;
@@ -96,7 +96,7 @@ BookNode load_book(char* filename){
 	BookNode head=NULL;
 	BookNode current=NULL;
 	Book tmp;
-	while(fscanf(fp,"%d | %[^|] | %[^|] | %[^|] | %ld | %[^|] | %c\n",&tmp.bookId,tmp.name,tmp.publisher,tmp.author, &tmp.ISBN, tmp.location, &tmp.isAvailable)!=EOF){
+	while(fscanf(fp,"%d|%[^|]|%[^|]|%[^|]|%ld|%[^|]|%c\n",&tmp.bookId,tmp.name,tmp.publisher,tmp.author, &tmp.ISBN, tmp.location, &tmp.isAvailable)!=EOF){
 
 		BookNode tmpp = malloc(sizeof(Book));
        		*tmpp = tmp;
@@ -128,7 +128,7 @@ BorrowNode load_borrow(char* filename){
 	BorrowNode head=NULL;
 	BorrowNode current=NULL;
 	Borrow tmp;
-	while(fscanf(fp,"%d | %d | %ld | %ld\n",&tmp.id,&tmp.bookId,&tmp.borrowDate, &tmp.returnDate)!=EOF){
+	while(fscanf(fp,"%d|%d|%ld|%ld\n",&tmp.id,&tmp.bookId,&tmp.borrowDate, &tmp.returnDate)!=EOF){
 
 		BorrowNode tmpp = malloc(sizeof(Borrow));
        		*tmpp = tmp;
