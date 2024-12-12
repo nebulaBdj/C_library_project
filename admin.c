@@ -36,6 +36,7 @@ void menu_admin(){
 				break;
 			case 4:
 				//도서 반남
+				return_book();
 				break;
 			case 5:
 				//도서 검색
@@ -433,4 +434,92 @@ void delete_book() {
 
 	printf("도서 번호를 찾을 수 없습니다. 2초 후 돌아갑니다.\n");
 	sleep(2);
+}
+
+
+
+
+
+
+
+void return_book() {
+	int studentId;
+	printf("\n>> 도서 반납 <<\n");
+	printf("학번을 입력하세요: ");
+	scanf("%d", &studentId);
+
+	BorrowNode currentBorrow = headBorrow;
+	bool found = false;
+
+	printf("\n>> 회원의 대여 목록 <<\n");
+	while (currentBorrow != NULL) {
+		if (currentBorrow->id == studentId) {
+			found = true;
+
+			BookNode currentBook = headBook;
+			while (currentBook != NULL) {
+				if (currentBook->bookId == currentBorrow->bookId) {
+					char borrowDate[20], returnDate[20];
+					calculate_date(currentBorrow->borrowDate, borrowDate);
+					calculate_date(currentBorrow->returnDate, returnDate);
+
+					printf("도서번호: %d\n도서명: %s\n대여일자: %s\n반납일자: %s\n\n",
+							   currentBook->bookId, currentBook->name, borrowDate, returnDate);
+					break;
+				}
+				currentBook = currentBook->next;
+			}
+		}
+		currentBorrow = currentBorrow->next;
+	}
+
+	if (!found) {
+		printf("대여 목록이 없습니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
+		return;
+	}
+
+	int returnBookId;
+	printf("반납할 도서번호를 입력하세요: ");
+	scanf("%d", &returnBookId);
+
+	BorrowNode prevBorrow = NULL;
+	currentBorrow = headBorrow;
+	found = false;
+
+	while (currentBorrow != NULL) {
+		if (currentBorrow->bookId == returnBookId && currentBorrow->id == studentId) {
+			found = true;
+
+			if (prevBorrow == NULL) {
+				headBorrow = currentBorrow->next;
+			} else {
+				prevBorrow->next = currentBorrow->next;
+			}
+			free(currentBorrow);
+
+			BookNode currentBook = headBook;
+			while (currentBook != NULL) {
+				if (currentBook->bookId == returnBookId) {
+					currentBook->isAvailable = 'Y';
+					break;
+				}
+				currentBook = currentBook->next;
+			}
+
+			update_borrow(headBorrow, "borrow.txt");
+			update_book(headBook, "book.txt");
+
+			printf("도서가 반납되었습니다. 2초 후 돌아갑니다.\n");
+			sleep(2);
+			return;
+		}
+		prevBorrow = currentBorrow;
+		currentBorrow = currentBorrow->next;
+	}
+
+	if (!found) {
+		printf("해당 도서번호를 찾을 수 없습니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
+	}
 }

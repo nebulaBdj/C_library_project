@@ -57,6 +57,7 @@ ClientNode search_by_id(ClientNode, int);
 
 //client
 void menu_client();
+void display_borrowed_books(ClientNode);
 
 //admin
 void menu_admin();
@@ -65,6 +66,7 @@ void search_client_by_name(ClientNode);
 void search_client_by_id(ClientNode);
 void search_client_all(ClientNode);
 void delete_book();
+void return_book();
 
 //utils
 void print_menu_name();
@@ -73,6 +75,7 @@ void sort_client(ClientNode);
 ClientNode insert_client(ClientNode, ClientNode);
 void debug_pring_client(ClientNode);
 void wait_enter();
+void calculate_date(time_t , char*);
 
 //search_book
 void search_book_menu(BookNode);

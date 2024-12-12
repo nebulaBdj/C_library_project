@@ -24,6 +24,7 @@ void menu_client(ClientNode info){
 				break;
 			case 2:
 				//내 대여 목록
+				display_borrowed_books(info);
 				break;
 			case 3:
 				//개인정보 수정
@@ -160,4 +161,42 @@ void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
     	return ;
 }
 
+void display_borrowed_books(ClientNode info) {
+	printf("\n>> 내 대여 목록 <<\n");
 
+	BorrowNode currentBorrow = headBorrow;
+	bool found = false;
+
+	while (currentBorrow != NULL) {
+		if (currentBorrow->id == info->id) {
+			found = true;
+
+			BookNode currentBook = headBook;
+			while (currentBook != NULL) {
+				if (currentBook->bookId == currentBorrow->bookId) {
+					char borrowDate[20], returnDate[20];
+
+					calculate_date(currentBorrow->borrowDate, borrowDate);
+					calculate_date(currentBorrow->returnDate, returnDate);
+
+					printf("도서번호: %d\n", currentBook->bookId);
+					printf("도서명: %s\n", currentBook->name);
+					printf("대여일자: %s\n", borrowDate);
+					printf("반납일자: %s\n\n", returnDate);
+					break;
+				}
+				currentBook = currentBook->next;
+			}
+		}
+		currentBorrow = currentBorrow->next;
+	}
+
+	if (!found) {
+		printf("대여 목록이 없습니다. 2초 후 돌아갑니다.\n");
+		sleep(2);
+		return;
+	}
+
+	printf("목록 확인 완료. 엔터를 누르면 돌아갑니다.\n");
+	wait_enter();
+}

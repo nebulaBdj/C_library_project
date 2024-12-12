@@ -80,3 +80,56 @@ void wait_enter(){
 	while((ch = getchar()) != '\n');
 }
 
+
+
+void calculate_date(time_t timeValue, char* buffer) {
+	const int SECONDS_IN_A_DAY = 86400;
+	const int DAYS_IN_A_YEAR = 365;
+
+	int year = 1970;
+	int month = 1;
+	int day = 1;
+	
+	// 윤년 계산
+	int is_leap_year(int year) {
+		return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+	}
+	
+	// 월별 일수
+	int days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	
+	// 초를 일수로 변환
+	int days = timeValue / SECONDS_IN_A_DAY;
+	
+	// 연도 계산
+	while (days >= DAYS_IN_A_YEAR) {
+		if (is_leap_year(year)) {
+			if (days >= 366) {
+				days -= 366;
+				year++;
+			} else {
+				break;
+			}
+		} else {
+			days -= 365;
+			year++;
+		}
+	}
+	
+	// 윤년의 경우 2월 일 수 변경
+	if (is_leap_year(year)) {
+		days_in_month[1] = 29;
+	}
+	
+	// 월 계산
+	for (month = 0; month < 12; month++) {
+		if (days < days_in_month[month]) {
+			break;
+		}
+		days -= days_in_month[month];
+	}
+
+	day += days;
+
+	sprintf(buffer, "%04d년 %02d월 %02d일", year, month + 1, day);
+}
