@@ -4,9 +4,9 @@ extern BorrowNode headBorrow;
 extern BookNode headBook;
 
 void update_info(ClientNode);
-void updateClient(ClientNode, char*);
-int isBorrow(BorrowNode, int );
-void removeClient(ClientNode,BorrowNode ,int );
+void updateClient(char*);
+int isBorrow(int);
+int removeClient(int);
 
 void menu_client(ClientNode info){
 	printf("\n");
@@ -32,8 +32,8 @@ void menu_client(ClientNode info){
 				break;
 			case 4:
 				//회원 탈퇴 
-				removeClient(headClient, headBorrow,info->id);
-				break;
+				if(removeClient(info->id))
+					num=5;
 			case 5:
 				//로그아웃
 				break;
@@ -98,14 +98,14 @@ void update_info(ClientNode info){
 }
 
 
-void updateClient(ClientNode head, char* filename) {
+void updateClient(char* filename) {
     	FILE* fp=fopen(filename,"w");
     	if(fp==NULL){
         	printf("client.txt 파일을 열 수 없습니다.\n");
         	return;
 	}
 
-    	ClientNode current=head;
+    	ClientNode current=headClient;
     	while(current!=NULL) {
         	fprintf(fp, "%d|%s|%s|%s|%s\n",current->id,current->password,current->name,current->address, current->phoneNumber);
         current = current->next;
@@ -115,8 +115,8 @@ void updateClient(ClientNode head, char* filename) {
 }
 
 //대여목록 검사
-int isBorrow(BorrowNode head, int id) {
-    BorrowNode current=head;
+int isBorrow(int id) {
+    BorrowNode current=headBorrow;
 
     while (current != NULL) {
         if (current->id == id) {
@@ -129,21 +129,24 @@ int isBorrow(BorrowNode head, int id) {
 }
 
 
-void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
+int removeClient(int id){
 	//대여한 도서가 있는경우
-	if(isBorrow(borrowHead,id)){
+	if(isBorrow(id)){
 		printf("대여한 도서가 있어 회원탈퇴가 불가능합니다. 2초 후 돌아갑니다.\n");
 		sleep(2);
-		return ;
+		return 0;
 	}
-
+	char confirm;
+	printf("정말 탈퇴하시겠습니까? (Y/N): ");
+	scanf("%c",&confirm);
+	if(confirm=='Y'|| confirm=='y'){
 
 	//대여한 도서가 없는 경우 탈퇴 진행
-	if(clientHead==NULL){
-        	return ;  // 리스트가 비어있음
+	if(headClient==NULL){
+        	return 1;  // 리스트가 비어있음
     	}
 
-    	ClientNode current=clientHead;
+    	ClientNode current=headClient;
     	ClientNode prev=NULL;
 
    	 // 삭제할 회원 찾기
@@ -154,17 +157,23 @@ void removeClient(ClientNode clientHead,BorrowNode borrowHead,int id){
 
     	// 첫 번째 노드를 삭제해야할 경우
     	if (prev==NULL) {
-        	clientHead=current->next;
+        	headClient=current->next;
     	}
 	else{
         	prev->next=current->next;
 	}
 
     	free(current);
-	updateClient(clientHead, "client.txt");
+	updateClient("client.txt");
 	printf("탈퇴가 완료되었습니다. 2초 후 돌아갑니다.\n");
 	sleep(2);
-    	return ;
+	return 1;
+	}
+	else{
+		printf("탈퇴를 그만둡니다. 2초 후 돌아갑니다\n");
+		sleep(2);
+		return 0;}
+    	return 0;
 }
 
 void display_borrowed_books(ClientNode info) {

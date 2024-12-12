@@ -4,10 +4,10 @@ extern BookNode headBook;
 extern BorrowNode headBorrow;
 
 void print_client(ClientNode);
-void add_book(BookNode);
-void update_book(BookNode, char*);
-void borrowBook(BookNode, BorrowNode);
-void update_borrow(BorrowNode,char*);
+void add_book();
+void update_book(char*);
+void borrowBook();
+void update_borrow(char*);
 
 
 
@@ -24,7 +24,7 @@ void menu_admin(){
 		switch(num){
 			case 1:
 				//도서 등록
-				add_book(headBook); 
+				add_book();
 				break;
 			case 2:
 				//도서 삭제
@@ -32,7 +32,7 @@ void menu_admin(){
 				break;
 			case 3:
 				//도서 대여
-				borrowBook(headBook,headBorrow);
+				borrowBook();
 				break;
 			case 4:
 				//도서 반남
@@ -140,7 +140,7 @@ void print_client(ClientNode node){
 	printf("%d | %s | %s | %s\n", node->id, node->name, node->address, node->phoneNumber);
 }
 
-void add_book(BookNode bookHead){
+void add_book(){
 	BookNode newBook = malloc(sizeof(Book));
     if (newBook == NULL) {
         printf("메모리 할당 실패.\n");
@@ -163,7 +163,7 @@ void add_book(BookNode bookHead){
     do{
 	flag = 0;
 	scanf("%ld", &tmpISBN);
-	BookNode tmp = bookHead;
+	BookNode tmp = headBook;
 	 while (tmp!= NULL) {
         if (tmp->ISBN == tmpISBN) {
             printf("이미 존재하는 ISBN입니다.\n 다시 입력해주세요:");
@@ -184,7 +184,7 @@ void add_book(BookNode bookHead){
     // 대여 가능 여부 설정
     newBook->isAvailable = 'Y';
     int maxId = 1000000;
-    BookNode current = bookHead;
+    BookNode current = headBook;
 
     while (current != NULL) {
         if (current->bookId > maxId) {
@@ -201,12 +201,12 @@ void add_book(BookNode bookHead){
         printf("등록하시겠습니까? Y/N : ");
         getchar();
         scanf("%c",&confirm);
-    current=bookHead;
+    current=headBook;
     if(confirm=='Y' || confirm=='y'){
-     if (bookHead == NULL || bookHead->ISBN > newBook->ISBN) {
+     if (headBook == NULL || headBook->ISBN > newBook->ISBN) {
         // 리스트가 비어있거나 첫 번째 노드의 ISBN이 새 도서의 ISBN보다 크면 맨 앞에 추가
-        newBook->next = bookHead;
-        bookHead = newBook;
+        newBook->next = headBook;
+        headBook = newBook;
      }
      else{
 	    BookNode prev=NULL;
@@ -217,7 +217,7 @@ void add_book(BookNode bookHead){
 	  prev->next=newBook;
 	 newBook->next=current;
      }
-	update_book(bookHead,"book.txt");
+	update_book("book.txt");
 	printf("도서 등록 성공,2초 후 돌아갑니다.\n");
 
 	sleep(2);
@@ -231,12 +231,12 @@ void add_book(BookNode bookHead){
 	return ;
 }
 
-void update_book(BookNode bookHead, char* filename){
+void update_book(char* filename){
 	FILE* fp=fopen(filename,"w");
 	if(fp==NULL){
 		printf("book.txt 파일을 열 수 없습니다.\n");
 		return ;}
-	BookNode current=bookHead;
+	BookNode current=headBook;
 	while(current!=NULL){
 		fprintf(fp,"%d|%s|%s|%s|%ld|%s|%c\n",current->bookId, current->name, current->publisher, current->author,current->ISBN, current->location,current->isAvailable);
 		current=current->next;
@@ -246,7 +246,7 @@ void update_book(BookNode bookHead, char* filename){
 	return ;
 }
 
-void borrowBook(BookNode bookHead, BorrowNode borrowHead) {
+void borrowBook() {
     char search_num; //검색 방식을 위한 변수
     char search_term[100]; //도서명이나 ISBN을 입력받기 위한 변수
     int student_id, book_id; //학번과 도서번호를 임시로 저장하기 위한 변수
@@ -271,7 +271,7 @@ void borrowBook(BookNode bookHead, BorrowNode borrowHead) {
     getchar();
     scanf("%[^\n]",search_term);
 
-    BookNode book_current = bookHead;
+    BookNode book_current = headBook;
     while (book_current != NULL) {
         if ((search_num == '1' && strstr(book_current->name, search_term) != NULL) ||
             (search_num == '2' && book_current->ISBN == atoll(search_term))) {
@@ -312,13 +312,13 @@ void borrowBook(BookNode bookHead, BorrowNode borrowHead) {
                             new_borrow->returnDate = now;
                         }
 
-                        new_borrow->next = borrowHead;
-                        borrowHead = new_borrow;
+                        new_borrow->next = headBorrow;
+                        headBorrow = new_borrow;
 
 			//book파일 업데이트
-			update_book(bookHead,"book.txt");
+			update_book("book.txt");
 			 //borrow파일 덮어쓰기
-			 update_borrow(borrowHead,"borrow.txt");
+			 update_borrow("borrow.txt");
                         printf("도서가 대여 되었습니다. 2초 후 돌아갑니다.\n");
 			 sleep(2);
                         return;
@@ -344,12 +344,12 @@ void borrowBook(BookNode bookHead, BorrowNode borrowHead) {
     sleep(2);
 }
 
-void update_borrow(BorrowNode borrowHead, char* filename){
+void update_borrow(char* filename){
         FILE* fp=fopen(filename,"w");
         if(fp==NULL){
                 printf("borrow.txt 파일을 열 수 없습니다.\n");
                 return ;}
-        BorrowNode current=borrowHead;
+        BorrowNode current=headBorrow;
         while(current!=NULL){
                 fprintf(fp,"%d|%d|%ld|%ld\n",current->id, current->bookId, current->borrowDate, current->returnDate);
                 current=current->next;
@@ -358,7 +358,6 @@ void update_borrow(BorrowNode borrowHead, char* filename){
         fclose(fp);
         return ;
 }
-
 
 void delete_book() {
 	int searchOption;
@@ -423,7 +422,7 @@ void delete_book() {
 				prev->next = current->next;
 			}
 			free(current);
-			update_book(headBook, "book.txt");
+			update_book("book.txt");
 			printf("도서가 삭제되었습니다. 2초 후 돌아갑니다.\n");
 			sleep(2);
 			return;
@@ -507,8 +506,9 @@ void return_book() {
 				currentBook = currentBook->next;
 			}
 
-			update_borrow(headBorrow, "borrow.txt");
-			update_book(headBook, "book.txt");
+			update_borrow("borrow.txt");
+			update_book("book.txt");
+
 
 			printf("도서가 반납되었습니다. 2초 후 돌아갑니다.\n");
 			sleep(2);

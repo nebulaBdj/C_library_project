@@ -2,6 +2,9 @@
 ClientNode headClient; 
 BookNode headBook;
 BorrowNode headBorrow;
+void free_book(BookNode head);
+void free_client(ClientNode head);
+void free_borrow(BorrowNode head);
 
 int main(void){
 	headClient=load_client("client.txt");
@@ -148,4 +151,28 @@ BorrowNode load_borrow(char* filename){
     	return head;
 }
 
+
+void free_client(ClientNode head) {
+    while(head){
+        ClientNode temp=head;
+        head=head->next;
+        free(temp);
+    }
+}
+
+void free_book(BookNode head) {
+    while(head){
+        BookNode temp=head;
+        head=head->next;
+        free(temp);
+    }
+}
+
+void free_borrow(BorrowNode head) {
+    while(head){
+        BorrowNode temp=head;
+        head=head->next;
+        free(temp);
+    }
+}
 
