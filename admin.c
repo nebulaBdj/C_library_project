@@ -166,7 +166,7 @@ void add_book(){
 	BookNode tmp = headBook;
 	 while (tmp!= NULL) {
         if (tmp->ISBN == tmpISBN) {
-            printf("이미 존재하는 ISBN입니다.\n 다시 입력해주세요:");
+            printf("이미 존재하는 ISBN입니다.\nISBN을 다시 입력해주세요:");
             flag = 1;
             break;
         	}

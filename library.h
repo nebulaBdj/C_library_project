@@ -11,19 +11,19 @@
 #define ADMIN 1
 typedef struct client{
 	int id;
-	char password[50];
-	char name[30];
+	char password[100];
+	char name[50];
 	char address[200];
-	char phoneNumber[12];
+	char phoneNumber[20];
 	struct client *next;
 }Client;
 typedef Client *ClientNode;
 
 typedef struct book{
 	int bookId;
-	char name[50];
-	char publisher[50];
-	char author[10];
+	char name[100];
+	char publisher[100];
+	char author[100];
 	long ISBN;
 	char location[100];
 	char isAvailable;
