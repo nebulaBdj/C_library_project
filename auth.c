@@ -65,7 +65,7 @@ ClientNode sign_in(){
 		get_string("학번: ",inputId);
 
 		get_string("비밀번호: ", inputPwd);
-		if(strcmp(inputId, "admin") == 0){
+		if(strcmp(inputId, "admin") == 0 && strcmp(inputPwd, "lib_admin7") == 0){
 			return NULL;
 		}
 		findNode = search_by_id(headClient, atoi(inputId));
