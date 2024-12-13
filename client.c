@@ -212,6 +212,6 @@ void display_borrowed_books(ClientNode info) {
 		return;
 	}
 
-	printf("목록 확인 완료. 엔터를 누르면 돌아갑니다.\n");
+	printf("목록 확인 완료. ");
 	wait_enter();
 }
