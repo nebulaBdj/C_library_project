@@ -53,7 +53,7 @@ void search_book_menu(BookNode headBook){
 void print_all_books(BookNode headBook) {
 	printf(">> 전체 도서 목록 <<\n");
 	while (headBook != NULL) {
-		printf("%s| %s| %s| %ld| %s| %c\n",
+		printf("%s | %s | %s | %ld | %s | %c\n",
 				headBook->name, headBook->publisher, headBook->author,
 				headBook->ISBN, headBook->location, headBook->isAvailable);
 		headBook = headBook->next;
